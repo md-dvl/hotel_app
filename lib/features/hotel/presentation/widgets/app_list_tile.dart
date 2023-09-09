@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:hotel_clean/features/hotel/data/models/list_tile_models.dart';
+import 'package:hotel_clean/features/hotel/data/models/list_tile_model.dart';
 import 'package:hotel_clean/theme/colors.dart';
 import 'package:hotel_clean/theme/text_styles.dart';
 

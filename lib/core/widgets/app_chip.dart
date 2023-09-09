@@ -11,8 +11,8 @@ class AppChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 175,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 175),
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.cFBFBFC,
@@ -24,6 +24,7 @@ class AppChip extends StatelessWidget {
             text,
             style: AppTextStyles.sfPro16w500,
             maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ),

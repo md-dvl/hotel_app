@@ -6,17 +6,19 @@ class PriceRow extends StatelessWidget {
     Key? key,
     this.price,
     this.description,
+    this.isRoom = false,
   }) : super(key: key);
   final int? price;
   final String? description;
+  final bool isRoom;
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          'от $price ₽',
-          style: AppTextStyles.sfPro30w600,
+          isRoom ? '$price ₽' : 'от $price ₽',
+          style: AppTextStyles.sfPro30w600.copyWith(height: 1),
         ),
         const SizedBox(width: 8),
         Text(

@@ -2,19 +2,19 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:hotel_clean/core/resources/data_state.dart';
-import 'package:hotel_clean/features/hotel/data/data_sources/remote/hotel_api.dart';
-import 'package:hotel_clean/features/hotel/domain/entities/hotel.dart';
-import 'package:hotel_clean/features/hotel/domain/repository/hotel_repositoy.dart';
+import 'package:hotel_clean/features/rooms/data/data_sources/remote/room_api.dart';
+import 'package:hotel_clean/features/rooms/data/models/room.dart';
+import 'package:hotel_clean/features/rooms/domain/repository/room_repository.dart';
 
-class HotelRepositoryImpl implements HotelRepository {
-  final HotelApiService _hotelApiService;
-  HotelRepositoryImpl(this._hotelApiService);
+class RoomsRepositoryImpl implements RoomsRepository {
+  final RoomsApiService _roomApiService;
+  RoomsRepositoryImpl(this._roomApiService);
   @override
-  Future<DataState<HotelEntity>> getHotelDetails() async {
+  Future<DataState<List<RoomModel>>> getRooms() async {
     try {
-      final httpResponse = await _hotelApiService.getHotel();
+      final httpResponse = await _roomApiService.getRooms();
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        return DataSuccess(httpResponse.data.toEntity());
+        return DataSuccess(httpResponse.data.rooms);
       } else {
         return DataFailed(
           DioException(

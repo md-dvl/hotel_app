@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hotel_clean/core/resources/data_state.dart';
@@ -7,6 +6,7 @@ import 'package:hotel_clean/features/hotel/domain/usecases/get_hotel.dart';
 
 class HotelBloc extends Bloc<HotelEvent, HotelState> {
   final GetHotelUseCase _getHotelUseCase;
+
   HotelBloc(this._getHotelUseCase) : super(const HotelLoading()) {
     on<GetHotel>(onGetHotel);
   }
@@ -23,23 +23,31 @@ class HotelBloc extends Bloc<HotelEvent, HotelState> {
 }
 
 abstract class HotelState extends Equatable {
-  final HotelEntity? hotel;
-  final DioException? exception;
-  const HotelState(this.hotel, this.exception);
-  @override
-  List<Object> get props => [hotel!, exception!];
+  const HotelState();
 }
 
 class HotelLoading extends HotelState {
-  const HotelLoading() : super(null, null);
+  const HotelLoading() : super();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class HotelSucces extends HotelState {
-  const HotelSucces(HotelEntity hotel) : super(hotel, null);
+  final HotelEntity hotel;
+
+  const HotelSucces(this.hotel) : super();
+
+  @override
+  List<Object?> get props => [hotel];
 }
 
 class HotelException extends HotelState {
-  const HotelException(DioException exception) : super(null, exception);
+  const HotelException(this.exception);
+  final Object exception;
+
+  @override
+  List<Object?> get props => [exception];
 }
 
 abstract class HotelEvent {

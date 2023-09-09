@@ -10,6 +10,7 @@ class HotelEntity extends Equatable {
   final String? ratingName;
   final List<String>? imageUrls;
   final AboutTheHotel? aboutTheHotel;
+
   const HotelEntity({
     this.id,
     this.name,

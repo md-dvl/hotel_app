@@ -2,17 +2,17 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:hotel_clean/core/resources/data_state.dart';
-import 'package:hotel_clean/features/hotel/data/data_sources/remote/hotel_api.dart';
-import 'package:hotel_clean/features/hotel/domain/entities/hotel.dart';
-import 'package:hotel_clean/features/hotel/domain/repository/hotel_repositoy.dart';
+import 'package:hotel_clean/features/booking/data/data_sources/remote/booking_api.dart';
+import 'package:hotel_clean/features/booking/domain/entities/booking.dart';
+import 'package:hotel_clean/features/booking/domain/repository/booking_repository.dart';
 
-class HotelRepositoryImpl implements HotelRepository {
-  final HotelApiService _hotelApiService;
-  HotelRepositoryImpl(this._hotelApiService);
+class BookingRepositoryImpl implements BookingRepository {
+  final BookingApiService _bookingApiService;
+  BookingRepositoryImpl(this._bookingApiService);
   @override
-  Future<DataState<HotelEntity>> getHotelDetails() async {
+  Future<DataState<BookingEntity>> getBooking() async {
     try {
-      final httpResponse = await _hotelApiService.getHotel();
+      final httpResponse = await _bookingApiService.getBooking();
       if (httpResponse.response.statusCode == HttpStatus.ok) {
         return DataSuccess(httpResponse.data.toEntity());
       } else {
